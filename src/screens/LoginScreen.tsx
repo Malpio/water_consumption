@@ -7,10 +7,22 @@ import Toast from 'react-native-toast-message';
 import {Icon, Text} from '@ui-kitten/components';
 import LoginForm from '../components/forms/LoginForm';
 
+import useAuth from '../hooks/useAuth';
+
 import Colors from '../styles/Colors';
 import GlobalStyles from '../styles/GlobalStyles';
 
 const LoginScreen: React.FC = () => {
+  const onError = () => {
+    Toast.show({
+      type: 'error',
+      text1: 'Nieprawidłowe dane logowania!',
+      visibilityTime: 3000,
+    });
+  };
+
+  const {singIn, singOut, user} = useAuth({onError});
+  console.log('user!!', user);
   return (
     <SafeAreaView style={styles.mainContainer} edges={['top']}>
       <KeyboardAwareScrollView
@@ -28,7 +40,7 @@ const LoginScreen: React.FC = () => {
               Logowanie
             </Text>
           </View>
-          <LoginForm loading={false} onSubmit={() => {}} />
+          <LoginForm loading={false} onSubmit={singIn} />
         </View>
         <Toast ref={ref => Toast.setRef(ref)} />
       </KeyboardAwareScrollView>

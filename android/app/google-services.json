@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "538986637953",
+    "project_id": "water-consumption-330dd",
+    "storage_bucket": "water-consumption-330dd.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:538986637953:android:5a686a85bd25c7625dbb80",
+        "android_client_info": {
+          "package_name": "com.water_consumption"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "538986637953-v5n7n451vdmckjbnjfps3jonfga0v6n0.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.water_consumption",
+            "certificate_hash": "5e8f16062ea3cd2c4a0d547876baa6f38cabf625"
+          }
+        },
+        {
+          "client_id": "538986637953-a2lplpkl9pa6dc5081a076fof5e0d8u6.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCjDn_xnYBVVpzj2S7CYoyxRsW0nP1p9_A"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "538986637953-a2lplpkl9pa6dc5081a076fof5e0d8u6.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

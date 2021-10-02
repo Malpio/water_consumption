@@ -13,7 +13,6 @@ import {Controller} from 'react-hook-form';
 
 export enum InputType {
   DEFAULT = 'default',
-  USERNAME = 'username',
   PASSWORD = 'password',
   EMAIL = 'email',
   PRICE = 'price',

@@ -1,5 +1,5 @@
 import React from 'react';
-import {StyleSheet, Text, View} from 'react-native';
+import {StyleSheet, View} from 'react-native';
 import {useForm} from 'react-hook-form';
 
 import {LoginFormType} from '../../types/components/forms/LoginFormType';
@@ -22,11 +22,11 @@ const LoginForm: React.VFC<Props> = ({loading, onSubmit}) => {
   return (
     <View>
       <Input
-        name={'login'}
+        name={'email'}
         control={control}
-        error={errors.login}
-        type={InputType.USERNAME}
-        placeholder={'nazwa użytkownika'}
+        error={errors.email}
+        type={InputType.EMAIL}
+        placeholder={'adres email'}
         required
       />
       <Input
