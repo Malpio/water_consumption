@@ -2,16 +2,10 @@ import {useState, useEffect} from 'react';
 import auth, {FirebaseAuthTypes} from '@react-native-firebase/auth';
 
 import {LoginFormType} from '../types/components/forms/LoginFormType';
+import {UseAuthCallbacksType} from '../types/hooks/UseAuthType';
+import {UseAuthResult} from '../types/hooks/UseAuthType';
 
-const useAuth = ({
-  onSuccessLogin,
-  onError,
-  onSuccessLogout,
-}: {
-  onSuccessLogin?: () => void;
-  onError?: () => void;
-  onSuccessLogout?: () => void;
-}) => {
+const useAuth = (): UseAuthResult => {
   const [initializing, setInitializing] = useState(true);
   const [user, setUser] = useState<FirebaseAuthTypes.User | null>(null);
 
@@ -25,19 +19,21 @@ const useAuth = ({
     if (initializing) setInitializing(false);
   };
 
-  const singIn = ({email, password}: LoginFormType) => {
+  const singIn = ({
+    email,
+    password,
+    onError,
+    onSuccess,
+  }: LoginFormType & UseAuthCallbacksType) => {
+    console.log(email, password);
     auth()
       .signInWithEmailAndPassword(email, password)
-      .then(() => {
-        onSuccessLogin?.();
-      })
+      .then(onSuccess)
       .catch(onError);
   };
 
-  const singOut = () => {
-    auth()
-      .signOut()
-      .then(() => onSuccessLogout?.());
+  const singOut = (callbacks?: UseAuthCallbacksType) => {
+    auth().signOut().then(callbacks?.onSuccess).catch(callbacks?.onError);
   };
 
   return {

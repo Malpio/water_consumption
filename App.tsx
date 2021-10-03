@@ -9,6 +9,7 @@ import * as eva from '@eva-design/eva';
 import {EvaIconsPack} from '@ui-kitten/eva-icons';
 
 import Navigation from './src/navigation';
+import UserProvider from './src/core/contexts/UserProvider';
 
 const App = () => {
   const isDarkMode = useColorScheme() === 'dark';
@@ -27,7 +28,9 @@ const App = () => {
             backgroundColor={'transparent'}
             barStyle={'dark-content'}
           />
-          <Navigation />
+          <UserProvider>
+            <Navigation />
+          </UserProvider>
         </SafeAreaProvider>
       </ApplicationProvider>
     </>
