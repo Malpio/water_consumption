@@ -9,6 +9,7 @@ import {Text} from '@ui-kitten/components';
 
 import Button from '../components/Button';
 import Loader from '../components/Loader';
+import TopBar from '../components/TopBar';
 
 const WIDTH = Dimensions.get('screen').width;
 
@@ -18,6 +19,7 @@ const DashboardScreen = () => {
     useWaterConsumption();
   return (
     <SafeAreaView style={styles.mainContainer} edges={['top', 'bottom']}>
+      <TopBar onIconPress={singOut} header={'Dashboard'} />
       <View style={styles.container}>
         <View />
         {initialLoading ? (

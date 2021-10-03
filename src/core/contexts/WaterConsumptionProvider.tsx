@@ -35,7 +35,7 @@ const WaterConsumptionProvider: React.FC = ({children}) => {
         const data = documentSnapshot.data() as WaterConsumptionType;
         setData(data);
 
-        if (data.date) {
+        if (data?.date) {
           const date = new Date(data.date.seconds * 1000);
           const now = new Date();
           if (now.getDate() !== date.getDate()) {
@@ -72,7 +72,7 @@ const WaterConsumptionProvider: React.FC = ({children}) => {
   return (
     <waterConsumptionContext.Provider
       value={{
-        glasses: data.glasses,
+        glasses: data?.glasses,
         increaseLoading,
         initialLoading,
         increaseConsumptionGlasses,
