@@ -18,7 +18,10 @@ export const useWaterConsumption = () =>
   React.useContext(waterConsumptionContext);
 
 const WaterConsumptionProvider: React.FC = ({children}) => {
-  const [data, setData] = useState<WaterConsumptionType>({glasses: 0});
+  const [data, setData] = useState<WaterConsumptionType>({
+    glasses: 0,
+    date: null,
+  });
   const [initialLoading, setInitialLoading] = useState(true);
   const [increaseLoading, setIncreaseLoading] = useState(false);
 
@@ -31,10 +34,27 @@ const WaterConsumptionProvider: React.FC = ({children}) => {
       .onSnapshot(documentSnapshot => {
         const data = documentSnapshot.data() as WaterConsumptionType;
         setData(data);
+
+        if (data.date) {
+          const date = new Date(data.date.seconds * 1000);
+          const now = new Date();
+          if (now.getDate() !== date.getDate()) {
+            reset();
+          }
+        }
         setInitialLoading(false);
       });
     return () => subscriber();
   }, [user]);
+
+  const reset = () => {
+    if (user) {
+      firestore().collection('user_water_glasses').doc(user.uid).update({
+        glasses: 0,
+        date: firestore.FieldValue.serverTimestamp(),
+      });
+    }
+  };
 
   const increaseConsumptionGlasses = async () => {
     if (user) {
@@ -52,7 +72,7 @@ const WaterConsumptionProvider: React.FC = ({children}) => {
   return (
     <waterConsumptionContext.Provider
       value={{
-        ...data,
+        glasses: data.glasses,
         increaseLoading,
         initialLoading,
         increaseConsumptionGlasses,
