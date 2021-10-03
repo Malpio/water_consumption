@@ -27,14 +27,15 @@ const DashboardScreen = () => {
         ) : (
           <View>
             <Text
-              style={styles.text}
+              style={[styles.text, styles.header]}
               category={
-                'h6'
+                'h5'
               }>{`Ilość wypitych dziś szklanek wody: ${glasses}`}</Text>
             <Button
               text={'Dodaj wypitą szklankę'}
               loading={increaseLoading}
               onPress={increaseConsumptionGlasses}
+              style={styles.button}
             />
             <Text style={styles.text} category={'c2'}>
               Pamiętaj, że powinieneś pić około 8 szklanek wody dziennie!
@@ -65,5 +66,11 @@ const styles = StyleSheet.create({
   },
   text: {
     textAlign: 'center',
+  },
+  header: {
+    marginBottom: 50,
+  },
+  button: {
+    marginBottom: 10,
   },
 });

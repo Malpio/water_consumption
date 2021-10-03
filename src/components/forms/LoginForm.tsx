@@ -7,6 +7,8 @@ import {LoginFormType} from '../../types/components/forms/LoginFormType';
 import Input, {InputType} from '../Input';
 import Button from '../Button';
 
+import {emailValidation} from '../../utilities/formsValidationFunctions';
+
 type Props = {
   loading?: boolean;
   onSubmit: (data: LoginFormType) => void;
@@ -27,6 +29,7 @@ const LoginForm: React.VFC<Props> = ({loading, onSubmit}) => {
         error={errors.email}
         type={InputType.EMAIL}
         placeholder={'adres email'}
+        validate={emailValidation}
         required
       />
       <Input

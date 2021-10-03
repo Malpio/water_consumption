@@ -11,9 +11,11 @@ import {EvaIconsPack} from '@ui-kitten/eva-icons';
 import Navigation from './src/navigation';
 import UserProvider from './src/core/contexts/UserProvider';
 import WaterConsumptionProvider from './src/core/contexts/WaterConsumptionProvider';
+import useNotification from './src/hooks/useNotification';
 
 const App = () => {
   const isDarkMode = useColorScheme() === 'dark';
+  useNotification();
 
   const backgroundStyle = {
     backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,

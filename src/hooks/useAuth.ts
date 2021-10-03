@@ -25,7 +25,6 @@ const useAuth = (): UseAuthResult => {
     onError,
     onSuccess,
   }: LoginFormType & UseAuthCallbacksType) => {
-    console.log(email, password);
     auth()
       .signInWithEmailAndPassword(email, password)
       .then(onSuccess)
