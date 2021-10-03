@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState, useCallback} from 'react';
 import {StyleSheet, View} from 'react-native';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
@@ -7,20 +7,33 @@ import Toast from 'react-native-toast-message';
 import {Icon, Text} from '@ui-kitten/components';
 import LoginForm from '../components/forms/LoginForm';
 
+import {LoginFormType} from '../types/components/forms/LoginFormType';
+
 import {useUser} from '../core/contexts/UserProvider';
 
 import Colors from '../styles/Colors';
 import GlobalStyles from '../styles/GlobalStyles';
 
 const LoginScreen: React.FC = () => {
+  const [loading, setLoading] = useState(false);
   const {singIn} = useUser();
-  const onError = () => {
+  const onError = useCallback(() => {
     Toast.show({
       type: 'error',
       text1: 'Nieprawidłowe dane logowania!',
       visibilityTime: 3000,
     });
-  };
+    setLoading(false);
+  }, [Toast]);
+
+  const onSuccess = useCallback(() => {
+    setLoading(false);
+  }, []);
+
+  const onSubmit = useCallback((data: LoginFormType) => {
+    setLoading(true);
+    singIn({onError, onSuccess, ...data});
+  }, []);
 
   return (
     <SafeAreaView style={styles.mainContainer} edges={['top']}>
@@ -39,10 +52,7 @@ const LoginScreen: React.FC = () => {
               Logowanie
             </Text>
           </View>
-          <LoginForm
-            loading={false}
-            onSubmit={data => singIn({onError, ...data})}
-          />
+          <LoginForm loading={loading} onSubmit={onSubmit} />
         </View>
         <Toast ref={ref => Toast.setRef(ref)} />
       </KeyboardAwareScrollView>
