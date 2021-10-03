@@ -2,7 +2,7 @@
 
 - Firebase
   - login using email/password
-  - firebase
+  - firestore
 - State management using Context API
 - Routing with React-Navigation v5
 
