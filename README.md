@@ -1,4 +1,4 @@
-## Tech stack:
+# Tech stack
 
 - Firebase
   - login using email/password
@@ -6,14 +6,14 @@
 - State management using Context API
 - Routing with React-Navigation v5
 
-# Additional
+## Additional
 
 - Forms created using useForm
 - TypeScript
 - Linter and prettier
 - UI Kitten
 
-# Login credential
+## Login credential
 
 - email: test@test.pl
 - password: zaq1@WSX
