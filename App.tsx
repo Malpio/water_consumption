@@ -10,6 +10,7 @@ import {EvaIconsPack} from '@ui-kitten/eva-icons';
 
 import Navigation from './src/navigation';
 import UserProvider from './src/core/contexts/UserProvider';
+import WaterConsumptionProvider from './src/core/contexts/WaterConsumptionProvider';
 
 const App = () => {
   const isDarkMode = useColorScheme() === 'dark';
@@ -29,7 +30,9 @@ const App = () => {
             barStyle={'dark-content'}
           />
           <UserProvider>
-            <Navigation />
+            <WaterConsumptionProvider>
+              <Navigation />
+            </WaterConsumptionProvider>
           </UserProvider>
         </SafeAreaProvider>
       </ApplicationProvider>
